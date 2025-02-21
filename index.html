@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kawai 🎀</title>
     <style>
-           body {
+        body {
             background-color: #ffc0cb;
             display: flex;
             justify-content: center;
@@ -14,6 +14,8 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
             position: relative;
+            margin: 0;
+            padding: 0;
         }
         .login-container, .gallery {
             background: white;
@@ -23,21 +25,20 @@
             text-align: center;
             position: relative;
             z-index: 10;
-        }
-        .login-container {
-            width: 300px;
+            max-width: 90%;
+            width: 320px;
         }
         .gallery {
             display: none;
+            flex-direction: column;
             width: 100%;
-            height: 100%;
+            height: auto;
             padding: 10px;
         }
         .gallery video {
-            width: 80%;
+            width: 100%;
             height: auto;
             border-radius: 10px;
-            margin-bottom: 10px;
         }
         .input-field {
             width: 90%;
@@ -57,72 +58,69 @@
         }
         .bow {
             position: absolute;
-            font-size: 30px;
+            font-size: 20px;
             color: #ff1493;
             animation: float 5s infinite linear;
             z-index: 1;
         }
         @keyframes float {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0); }
+        }
+        /* Mobile Friendly */
+        @media (max-width: 480px) {
+            .login-container, .gallery {
+                width: 95%;
+            }
+            .bow {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="login-container" id="loginBox">
         <h2>안녕 귀염둥이!!</h2>
-        <p>Somthing for you.. want to se ? 🎀 </p>
+        <p>Something for you.. want to see? 🎀</p>
         <input type="email" class="input-field" placeholder="Give your insta id">
-        <input type="password" class="input-field" placeholder=" Can i get you No.📞?">
+        <input type="password" class="input-field" placeholder=" Can I get your No.? 📞">
         <button class="login-btn" onclick="login()">Chala mag</button>
     </div>
 
     <div class="gallery" id="gallery">
-        <h2>Love you baby gurl🎀</h2> 
-        <video src="IMG_1553.MOV" autoplay loop muted alt="Description"></video>
-
+        <h2>Love you baby gurl 🎀</h2> 
+        <video src="" autoplay loop muted></video>
     </div>
 
-    
-        <script>
-    function createBows() {
-        for (let i = 0; i < 400; i++) {
-            let bow = document.createElement("div");
-            bow.innerHTML = "🎀";
-            bow.classList.add("bow");
-            bow.style.left = Math.random() * 100 + "vw";
-            bow.style.top = Math.random() * 100 + "vh";
-            bow.style.animationDuration = (Math.random() * 5 + 3) + "s";
-            
-            // Ensure bows are not inside login or gallery container
-            let isInsideContainer = document.elementFromPoint(parseInt(bow.style.left), parseInt(bow.style.top))?.closest('.login-container, .gallery');
-            if (!isInsideContainer) {
+    <script>
+        function createBows() {
+            for (let i = 0; i < 400; i++) { 
+                let bow = document.createElement("div");
+                bow.innerHTML = "🎀";
+                bow.classList.add("bow");
+                bow.style.left = Math.random() * 100 + "vw";
+                bow.style.top = Math.random() * 100 + "vh";
+                bow.style.animationDuration = (Math.random() * 5 + 3) + "s";
                 document.body.appendChild(bow);
             }
         }
-    }
-    createBows();
+        createBows();
 
-    function login() {
-        // Define correct credentials
-        const correctEmail = "_kinjal.28_";
-        const correctPassword = "7039674142";
+        function login() {
+            const correctEmail = "k";
+            const correctPassword = "0";
 
-        // Get user input
-        const emailInput = document.querySelector(".input-field[type='email']").value;
-        const passwordInput = document.querySelector(".input-field[type='password']").value;
+            const emailInput = document.querySelector(".input-field[type='email']").value;
+            const passwordInput = document.querySelector(".input-field[type='password']").value;
 
-        // Check credentials
-        if (emailInput === correctEmail && passwordInput === correctPassword) {
-            document.getElementById("loginBox").style.display = "none";
-            document.getElementById("gallery").style.display = "flex";
-        } else {
-            alert("Oops! You are not Kawairashi. Try again! 🎀");
+            if (emailInput === correctEmail && passwordInput === correctPassword) {
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("gallery").style.display = "flex";
+            } else {
+                alert("Oops! You are not Kawairashi. Try again! 🎀");
+            }
         }
-    }
-
-
     </script>
 </body>
 </html>
